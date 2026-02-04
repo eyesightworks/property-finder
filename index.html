@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drug‑Info Real Estate</title>
+
+<style>
+/* ====== RESET ====== */
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+body { background:#f5f5f5; line-height:1.6; }
+
+/* ====== HEADER ====== */
+header { background:#d71a28; color:white; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+header h1 { font-size:24px; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+nav a:hover { text-decoration:underline; }
+
+/* ====== HERO ====== */
+.hero { background:white; padding:60px 20px; text-align:center; }
+.hero h2 { margin-bottom:20px; font-size:28px; }
+.hero input { width:80%; max-width:500px; padding:12px; font-size:16px; border-radius:5px; border:1px solid #ccc; }
+.hero button { padding:12px 20px; margin-left:10px; border:none; border-radius:5px; background:#d71a28; color:white; cursor:pointer; font-weight:bold; }
+
+/* ====== SECTIONS ====== */
+section { padding:40px 20px; }
+.section-title { text-align:center; margin-bottom:30px; font-size:24px; }
+
+/* ====== GRID ====== */
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+
+/* ====== CARDS ====== */
+.card { background:white; border-radius:8px; padding:20px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+.card img { width:100%; border-radius:8px; margin-bottom:10px; }
+.card h3 { margin-bottom:5px; }
+.card p { font-size:14px; color:#555; }
+
+/* ====== FOOTER ====== */
+footer { background:#d71a28; color:white; text-align:center; padding:20px; }
+footer a { color:white; margin:0 8px; text-decoration:none; }
+
+/* ====== RESPONSIVE ====== */
+@media(max-width:768px){
+    header { flex-direction:column; align-items:flex-start; }
+    nav { margin-top:10px; }
+    .hero input { width:70%; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>Drug‑Info Real Estate</h1>
+    <nav>
+        <a href="#hero">Home</a>
+        <a href="#properties">Properties</a>
+        <a href="#news">News</a>
+        <a href="#agents">Agents</a>
+        <a href="#footer">Contact</a>
+    </nav>
+</header>
+
+<!-- HERO SEARCH -->
+<section class="hero" id="hero">
+    <h2>Find Your Dream Property in Canada</h2>
+    <input type="text" id="searchInput" placeholder="City, neighborhood, or postal code">
+    <button onclick="filterProperties()">Search</button>
+    <p id="searchResult" style="margin-top:10px; color:#d71a28; font-weight:bold;"></p>
+</section>
+
+<!-- FEATURED PROPERTIES -->
+<section id="properties">
+    <h2 class="section-title">Featured Properties</h2>
+    <div class="grid" id="propertyList">
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="Property 1">
+            <h3>Modern Condo in Toronto</h3>
+            <p>Price: $750,000 | 2 Beds, 2 Baths</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="Property 2">
+            <h3>Luxury House in Vancouver</h3>
+            <p>Price: $1,200,000 | 4 Beds, 3 Baths</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="Property 3">
+            <h3>Cozy Townhouse in Montreal</h3>
+            <p>Price: $500,000 | 3 Beds, 2 Baths</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/400x250" alt="Property 4">
+            <h3>Suburban Home in Calgary</h3>
+            <p>Price: $650,000 | 3 Beds, 3 Baths</p>
+        </div>
+    </div>
+</section>
+
+<!-- LATEST NEWS -->
+<section id="news">
+    <h2 class="section-title">Latest Real Estate News</h2>
+    <div class="grid">
+        <div class="card">Toronto housing market hits record high prices.</div>
+        <div class="card">Vancouver condos see increased demand from investors.</div>
+        <div class="card">Montreal suburb homes growing in popularity among families.</div>
+    </div>
+</section>
+
+<!-- AGENTS -->
+<section id="agents">
+    <h2 class="section-title">Meet Our Agents</h2>
+    <div class="grid">
+        <div class="card">
+            <img src="https://via.placeholder.com/250x250" alt="Agent 1">
+            <h3>Jane Smith</h3>
+            <p>Senior Agent | jane@example.com</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/250x250" alt="Agent 2">
+            <h3>John Doe</h3>
+            <p>Real Estate Specialist | john@example.com</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/250x250" alt="Agent 3">
+            <h3>Mary Johnson</h3>
+            <p>Property Consultant | mary@example.com</p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+    <p>© 2026 Drug‑Info Real Estate | All rights reserved.</p>
+    <p>
+        <a href="#">About</a> |
+        <a href="#">Contact</a> |
+        <a href="#">Privacy Policy</a>
+    </p>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+const properties = [
+    {title:"Modern Condo in Toronto", location:"Toronto", price:"$750,000"},
+    {title:"Luxury House in Vancouver", location:"Vancouver", price:"$1,200,000"},
+    {title:"Cozy Townhouse in Montreal", location:"Montreal", price:"$500,000"},
+    {title:"Suburban Home in Calgary", location:"Calgary", price:"$650,000"}
+];
+
+function filterProperties(){
+    const input = document.getElementById("searchInput").value.toLowerCase();
+    const matches = properties.filter(p => p.location.toLowerCase().includes(input));
+    const resultEl = document.getElementById("searchResult");
+    if(input === "") {
+        resultEl.textContent = "";
+    } else if(matches.length > 0){
+        resultEl.textContent = "Found: " + matches.map(p => p.title).join(", ");
+    } else{
+        resultEl.textContent = "No properties found.";
+    }
+}
+</script>
+
+</body>
+</html>
