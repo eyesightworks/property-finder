@@ -8,301 +8,313 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-:root{
---bg:#f4f6fb;
---panel:#ffffff;
---card:#ffffff;
---text:#1f2937;
---muted:#6b7280;
---accent:#22c55e;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, sans-serif;
 }
 
-*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif}
-body{background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+body{
+background:#f5f7fb;
+display:flex;
+min-height:100vh;
+}
 
-.hidden{display:none}
-
-/* LOGIN */
+/* ========== LOGIN ========== */
 .login{
 margin:auto;
 background:#fff;
 padding:30px;
-width:320px;
+width:330px;
 border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
 text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,.1)
 }
-.login input{width:100%;padding:10px;margin:10px 0;border:1px solid #ccc;border-radius:6px}
-.login button{padding:10px 20px;background:var(--accent);border:none;color:#fff;border-radius:6px;cursor:pointer}
+.login input{
+width:100%;
+padding:12px;
+margin-bottom:12px;
+border-radius:8px;
+border:1px solid #ddd;
+}
+.login button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:#fff;
+font-weight:600;
+cursor:pointer;
+}
 
-/* SIDEBAR */
-aside{
-width:240px;
-background:#0f172a;
+/* ========== SIDEBAR ========== */
+.sidebar{
+width:230px;
+background:#0b1e35;
 color:#fff;
 padding:20px;
-transition:.3s
 }
-aside h2{margin-bottom:20px}
-aside button{
+.sidebar h2{
+display:flex;
+align-items:center;
+gap:10px;
+margin-bottom:30px;
+}
+.sidebar a{
 display:block;
-width:100%;
-padding:10px;
+padding:12px 15px;
 margin-bottom:8px;
-border:none;
-background:none;
-color:#cbd5f5;
-border-radius:6px;
-text-align:left;
-cursor:pointer
+border-radius:8px;
+color:#cbd5e1;
+text-decoration:none;
+cursor:pointer;
 }
-aside button.active,
-aside button:hover{
-background:var(--accent);
-color:#fff
+.sidebar a.active,
+.sidebar a:hover{
+background:#2563eb;
+color:#fff;
 }
 
-/* MAIN */
-main{flex:1;padding:25px;overflow-y:auto}
-
-/* HAMBURGER */
-.hamburger{font-size:24px;cursor:pointer;display:none;margin-bottom:15px;color:#000}
-
-@media(max-width:768px){
-aside{
-position:fixed;
-left:-240px;
-top:0;
-height:100%;
-z-index:1000
-}
-aside.open{left:0}
-.hamburger{display:block}
+/* ========== MAIN ========== */
+.main{
+flex:1;
+padding:25px;
 }
 
-/* DASHBOARD CARDS */
-.stats{
+/* ========== CARDS ========== */
+.cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:15px;
-margin-bottom:20px
+margin-bottom:20px;
 }
-.stat-card{
-background:#fff;
-padding:20px;
-border-radius:12px;
-box-shadow:0 4px 10px rgba(0,0,0,.05)
-}
-
-/* GENERAL CARD */
 .card{
 background:#fff;
 padding:20px;
 border-radius:12px;
-margin-bottom:20px;
-box-shadow:0 4px 10px rgba(0,0,0,.05)
+}
+.card h4{
+color:#6b7280;
+font-weight:600;
+}
+.card h2{
+margin-top:5px;
 }
 
-/* PROPERTY GRID */
+/* ========== ALERT BAR ========== */
+.alert-bar{
+background:#fde047;
+padding:12px 15px;
+border-radius:8px;
+font-weight:600;
+margin-bottom:20px;
+}
+
+/* ========== CHART ========== */
+.chart-card{
+background:#fff;
+padding:20px;
+border-radius:12px;
+}
+
+/* ========== PROPERTY GRID ========== */
 .properties-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px
+gap:15px;
+}
+.property-card{
+background:#fff;
+padding:10px;
+border-radius:12px;
 }
 .property-card img{
 width:100%;
 height:150px;
 object-fit:cover;
-border-radius:10px
+border-radius:10px;
 }
-.property-card h4{margin:10px 0}
 
-/* AGENTS */
+/* ========== AGENTS ========== */
 .agents-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:15px
+gap:15px;
 }
 .agent-card{
-text-align:center
+background:#fff;
+padding:15px;
+border-radius:12px;
+text-align:center;
 }
 .agent-card img{
-width:120px;
-height:120px;
+width:100px;
+height:100px;
 border-radius:50%;
-object-fit:cover
+object-fit:cover;
 }
 
-/* TABLE */
-table{width:100%;border-collapse:collapse}
-th,td{padding:8px;border-bottom:1px solid #ddd}
-
-canvas{max-width:100%}
+/* ========== MOBILE ========== */
+@media(max-width:768px){
+.sidebar{
+display:none;
+}
+}
 </style>
 </head>
 
 <body>
 
 <!-- LOGIN -->
-<div id="loginBox" class="login">
-<h2>Estate Portfolio Login</h2>
+<div class="login" id="loginBox">
+<h2>Estate Login</h2>
 <input id="username" placeholder="Username">
 <input id="password" type="password">
 <button onclick="login()">Login</button>
 <p id="loginMsg"></p>
 </div>
 
+<!-- APP -->
+<div id="app" style="display:none; width:100%;">
+
 <!-- SIDEBAR -->
-<aside id="sidebar" class="hidden">
-<h2>🏠 Estate Portfolio</h2>
-<button class="active" onclick="showView('dashboard',this)">Dashboard</button>
-<button onclick="showView('properties',this)">Properties</button>
-<button onclick="showView('agents',this)">Agents</button>
-<button onclick="showView('sales',this)">Sales</button>
-</aside>
-
-<!-- MAIN -->
-<main id="app" class="hidden">
-
-<div class="hamburger" onclick="toggleMenu()">☰</div>
-
-<!-- DASHBOARD -->
-<section id="dashboard">
-
-<div class="stats">
-<div class="stat-card">
-<h4>Total Properties</h4>
-<h2>4</h2>
+<div class="sidebar">
+<h2>🏠 Estate</h2>
+<a class="active" onclick="showSection('dashboard',this)">Dashboard</a>
+<a onclick="showSection('properties',this)">Properties</a>
+<a onclick="showSection('agents',this)">Agents</a>
+<a onclick="showSection('sales',this)">Sales</a>
+<a onclick="logout()">Logout</a>
 </div>
 
-<div class="stat-card">
+<!-- MAIN -->
+<div class="main">
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+
+<h2 style="margin-bottom:20px;">Dashboard</h2>
+
+<div class="cards">
+<div class="card">
+<h4>Total Properties</h4>
+<h2 id="totalProperties">4</h2>
+</div>
+
+<div class="card">
 <h4>Total Sales</h4>
 <h2 id="totalSales">0</h2>
 </div>
-</div>
 
 <div class="card">
-<h3>Sales Analytics</h3>
+<h4>Agents</h4>
+<h2>3</h2>
+</div>
+</div>
+
+<div class="alert-bar">
+Hot Deal: Luxury Villa available now!
+</div>
+
+<div class="chart-card">
 <canvas id="salesChart" height="120"></canvas>
 </div>
 
-</section>
+</div>
 
 <!-- PROPERTIES -->
-<section id="properties" class="hidden">
+<div id="properties" style="display:none;">
 
-<div class="card">
-<h3>Featured Properties</h3>
+<h2 style="margin-bottom:20px;">Properties</h2>
 
 <div class="properties-grid">
-
 <div class="property-card">
 <img src="images/property1.png">
-<h4>Modern Family House</h4>
-<p>$350,000</p>
+<p>Modern Family House</p>
 </div>
 
 <div class="property-card">
 <img src="images/property2.png">
-<h4>Luxury Villa</h4>
-<p>$850,000</p>
+<p>Luxury Villa</p>
 </div>
 
 <div class="property-card">
 <img src="images/property3.png">
-<h4>City Apartment</h4>
-<p>$420,000</p>
+<p>City Apartment</p>
 </div>
 
 <div class="property-card">
 <img src="images/property4.png">
-<h4>Country Home</h4>
-<p>$300,000</p>
-</div>
-
+<p>Country Home</p>
 </div>
 </div>
 
-</section>
+</div>
 
 <!-- AGENTS -->
-<section id="agents" class="hidden">
+<div id="agents" style="display:none;">
 
-<div class="card">
-<h3>Our Agents</h3>
+<h2 style="margin-bottom:20px;">Agents</h2>
 
 <div class="agents-grid">
-
 <div class="agent-card">
 <img src="images/agent1.png">
-<h4>Sarah Johnson</h4>
+<p>Sarah Johnson</p>
 </div>
 
 <div class="agent-card">
 <img src="images/agent2.png">
-<h4>Michael Lee</h4>
+<p>Michael Lee</p>
 </div>
 
 <div class="agent-card">
 <img src="images/agent3.png">
-<h4>Emma Brown</h4>
+<p>Emma Brown</p>
+</div>
 </div>
 
 </div>
-
-</div>
-
-</section>
 
 <!-- SALES -->
-<section id="sales" class="hidden">
+<div id="sales" style="display:none;">
 
-<div class="card">
-<h3>Record Sale</h3>
-<input id="saleAmount" type="number" placeholder="Enter Sale Amount">
+<h2 style="margin-bottom:20px;">Add Sale</h2>
+
+<input id="saleAmount" type="number" placeholder="Sale Amount">
 <button onclick="addSale()">Add Sale</button>
-
-<table>
-<thead>
-<tr><th>Sale Amount</th></tr>
-</thead>
-<tbody id="salesTable"></tbody>
-</table>
 
 </div>
 
-</section>
-
-</main>
+</div>
+</div>
 
 <script>
 /* LOGIN */
 function login(){
 if(username.value==="admin" && password.value==="admin"){
-loginBox.classList.add("hidden");
-sidebar.classList.remove("hidden");
-app.classList.remove("hidden");
+loginBox.style.display="none";
+app.style.display="flex";
 drawChart();
 }else{
 loginMsg.textContent="Use admin / admin";
 }
 }
 
-/* MENU */
-function toggleMenu(){
-sidebar.classList.toggle("open");
+function logout(){
+location.reload();
 }
 
 /* NAV */
-function showView(id,btn){
-document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
-document.getElementById(id).classList.remove("hidden");
-document.querySelectorAll("aside button").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-sidebar.classList.remove("open");
+function showSection(id,el){
+document.querySelectorAll(".main > div").forEach(d=>d.style.display="none");
+document.getElementById(id).style.display="block";
+document.querySelectorAll(".sidebar a").forEach(a=>a.classList.remove("active"));
+el.classList.add("active");
 }
 
-/* SALES */
+/* SALES DATA */
 let sales=[];
 
 function addSale(){
@@ -310,14 +322,6 @@ const val=Number(saleAmount.value);
 if(val<=0) return alert("Enter amount");
 sales.push(val);
 totalSales.textContent=sales.length;
-
-salesTable.innerHTML="";
-sales.forEach(s=>{
-const tr=document.createElement("tr");
-tr.innerHTML=`<td>$${s}</td>`;
-salesTable.appendChild(tr);
-});
-
 drawChart();
 saleAmount.value="";
 }
@@ -334,10 +338,15 @@ labels:sales.map((_,i)=>"Sale "+(i+1)),
 datasets:[{
 label:"Sales Amount",
 data:sales,
-backgroundColor:"#22c55e"
+backgroundColor:"#2563eb",
+borderRadius:6
 }]
 },
-options:{responsive:true,scales:{y:{beginAtZero:true}}}
+options:{
+scales:{
+y:{beginAtZero:true}
+}
+}
 });
 }
 </script>
