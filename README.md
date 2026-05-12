@@ -1,51 +1,79 @@
-# 🏠 Property Finder – Real Estate Booking Platform
+#  Property Finder – Real Estate Booking Platform
 
-A modern real estate booking platform that allows users to browse properties, view details, and book listings seamlessly.
+A modern real estate booking platform designed to help users browse property listings, explore available homes, and interact with a simplified booking workflow through a clean and responsive user interface.
 
-Built with a clean UI, responsive design, and scalable architecture principles.
-
----
-
-## 🚀 Live Demo
-
-🔗 https://eyesightworks.github.io/property-finder/
+This project demonstrates scalable frontend architecture, responsive UI development, dynamic property rendering, and real-world booking platform structure for modern real estate applications.
 
 ---
 
-## 📌 Overview
+#  Live Demo
 
-Property Finder is a real estate web application designed to simulate a modern property listing and booking experience.
+Frontend Demo:  
+https://eyesightworks.github.io/property-finder/
 
-The platform includes:
-
-- Property listing grid
-- Detailed property view
-- Booking interface
-- Clean dashboard-style layout
-- Responsive design for mobile & desktop
-
-This project demonstrates front-end architecture, user flow design, and booking system structure.
+GitHub Repository:  
+https://github.com/eyesightworks/property-finder
 
 ---
 
-## 🛠 Tech Stack
+#  Project Overview
 
-- React
-- JavaScript
+Property Finder was developed as a frontend real estate platform focused on user experience, property discovery, and booking interaction workflows.
+
+The application simulates a modern property listing environment where users can:
+
+- Browse available property listings
+- View featured real estate properties
+- Interact with booking-style workflows
+- Navigate a responsive dashboard-style interface
+- Explore mobile-friendly property layouts
+
+The platform demonstrates frontend engineering principles used in scalable real estate and booking systems.
+
+---
+
+#  Core Features
+
+- Responsive User Interface
+- Property Listing Grid
+- Property Search & Filtering
+- Booking Interaction Workflow
+- Dynamic Property Display
+- Mobile Responsive Layout
+- Clean UI Architecture
+- Frontend Navigation System
+- Scalable Frontend Structure
+- Real Estate User Flow Design
+- Modern Dashboard-Style Layout
+- Cross-Device Compatibility
+
+---
+
+# Tech Stack
+
+## Frontend
+- HTML5
 - CSS3
-- REST-style structure
-- Stripe-ready payment integration structure
+- JavaScript
+
+## UI & Design
+- Responsive Web Design
+- Modern Real Estate Interface
+- Grid-Based Layout Structure
+
+## Architecture
+- Scalable Frontend Structure
+- Frontend Booking Workflow
+- Dynamic UI Rendering
 
 ---
 
-## 🧠 Features
+# Project Structure
 
-- Responsive UI
-- Property filtering
-- Booking interaction flow
-- Component-based structure
-- Scalable folder organization
-
----
-
-## 📂 Project Structure
+```bash
+project/
+├── index.html
+├── style.css
+├── script.js
+├── images/
+└── README.md
